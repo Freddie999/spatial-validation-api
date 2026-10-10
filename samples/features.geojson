@@ -1,0 +1,1 @@
+{"type":"FeatureCollection","features":[{"type":"Feature","properties":{"name":"Synthetic survey point"},"geometry":{"type":"Point","coordinates":[-105.29,40.01]}},{"type":"Feature","properties":{"name":"Synthetic survey boundary"},"geometry":{"type":"Polygon","coordinates":[[[-105.30,40.00],[-105.28,40.00],[-105.28,40.02],[-105.30,40.02],[-105.30,40.00]]]}}]}

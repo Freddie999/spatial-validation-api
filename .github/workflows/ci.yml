@@ -1,0 +1,27 @@
+name: API checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgis/postgis:16-3.5
+        env:
+          POSTGRES_DB: spatial_test
+          POSTGRES_USER: demo
+          POSTGRES_PASSWORD: local-demo-only
+        ports: ['5432:5432']
+        options: --health-cmd 'pg_isready -U demo -d spatial_test' --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgresql://demo:local-demo-only@localhost:5432/spatial_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.12.12'
+      - run: uv sync --frozen
+      - run: uv run ruff check .
+      - run: uv run pytest -q
+      - run: docker build -t spatial-validation-api .

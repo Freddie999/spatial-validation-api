@@ -1,0 +1,12 @@
+[project]
+name = "spatial-validation-api"
+version = "0.1.0"
+description = "Bounded GeoJSON ingestion and spatial queries with FastAPI and PostGIS"
+requires-python = ">=3.12"
+dependencies = ["fastapi>=0.115,<1", "uvicorn>=0.30,<1", "psycopg[binary,pool]>=3.2,<4", "shapely>=2.0,<3"]
+[dependency-groups]
+dev = ["pytest>=8,<10", "httpx>=0.27,<1", "ruff>=0.9,<1"]
+[tool.pytest.ini_options]
+pythonpath = ["."]
+[tool.ruff]
+line-length = 100

@@ -1,0 +1,27 @@
+name: spatial-validation-demo
+services:
+  db:
+    image: postgis/postgis:16-3.5
+    platform: linux/amd64
+
+    environment:
+      POSTGRES_DB: spatial
+      POSTGRES_USER: demo
+      POSTGRES_PASSWORD: local-demo-only
+    ports: ["127.0.0.1:55432:5432"]
+    volumes: ["spatial-data:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U demo -d spatial"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+  api:
+    build: .
+    environment:
+      DATABASE_URL: postgresql://demo:local-demo-only@db:5432/spatial
+    ports: ["127.0.0.1:8000:8000"]
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  spatial-data:
