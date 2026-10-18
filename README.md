@@ -2,7 +2,7 @@
 
 A compact Python/FastAPI service for checking GeoJSON before it enters a spatial database. It rejects ambiguous input, inserts valid batches atomically into PostGIS, and exposes indexed spatial intersection queries with cursor pagination.
 
-**Status:** runnable engineering demonstration, not a deployed production service. Built for Frederick Abalo's portfolio with AI-assisted implementation. No employer code or operational data is included. Sample survey features are synthetic.
+**Status:** runnable engineering demonstration, not a deployed production service. Built for Frederick Abalo's portfolio. No employer code or operational data is included. Sample survey features are synthetic.
 
 ![Local API demonstration](docs/demo.jpg)
 
